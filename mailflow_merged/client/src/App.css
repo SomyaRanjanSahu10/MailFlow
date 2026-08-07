@@ -1,0 +1,137 @@
+/* ── Google Font ──────────────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* ── Reset ───────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Design tokens ───────────────────────────────────────────────────────── */
+:root {
+  --ms-blue:           #0078d4;
+  --ms-blue-dark:      #005a9e;
+  --ms-blue-light:     #deecf9;
+  --ms-sidebar-bg:     #1e1e2e;
+  --ms-list-bg:        #f3f2f1;
+  --ms-border:         #e1dfdd;
+  --ms-text-primary:   #201f1e;
+  --ms-text-secondary: #605e5c;
+  --ms-text-muted:     #a19f9d;
+  --ms-danger:         #d13438;
+  --ms-success:        #107c10;
+  --ms-warning:        #ffb900;
+  --font-main:         'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* ── Base ────────────────────────────────────────────────────────────────── */
+html, body, #root {
+  height: 100%;
+  font-family: var(--font-main);
+  color: var(--ms-text-primary);
+  background: var(--ms-list-bg);
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+button, input, textarea, select {
+  font-family: var(--font-main);
+}
+a { color: var(--ms-blue); }
+
+/* ── Scrollbar ───────────────────────────────────────────────────────────── */
+::-webkit-scrollbar         { width: 5px; height: 5px; }
+::-webkit-scrollbar-track   { background: transparent; }
+::-webkit-scrollbar-thumb   { background: #c8c6c4; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #a19f9d; }
+
+/* ── Keyframe animations ─────────────────────────────────────────────────── */
+@keyframes slideIn  { from { opacity:0; transform:translateX(10px); }  to { opacity:1; transform:translateX(0); } }
+@keyframes slideUp  { from { opacity:0; transform:translateY(14px); }  to { opacity:1; transform:translateY(0); } }
+@keyframes fadeIn   { from { opacity:0; }                              to { opacity:1; } }
+@keyframes spin     {                                                   to { transform:rotate(360deg); } }
+@keyframes pulse    { 0%,100% { opacity:1; } 50% { opacity:0.45; } }
+@keyframes shimmer  { 0% { background-position:-200% 0; } 100% { background-position:200% 0; } }
+@keyframes bounceIn { 0% { transform:scale(0.85); opacity:0; } 60% { transform:scale(1.04); } 100% { transform:scale(1); opacity:1; } }
+
+/* ── ReactQuill rich text editor overrides ───────────────────────────────── */
+.ql-container {
+  font-family: var(--font-main) !important;
+  font-size: 14px !important;
+  border: none !important;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.ql-editor {
+  flex: 1;
+  min-height: 160px;
+  padding: 14px 18px !important;
+  font-size: 14px !important;
+  line-height: 1.7 !important;
+  color: var(--ms-text-primary) !important;
+}
+.ql-editor.ql-blank::before {
+  color: var(--ms-text-muted) !important;
+  font-style: normal !important;
+  left: 18px !important;
+}
+.ql-toolbar {
+  border: none !important;
+  border-bottom: 1px solid var(--ms-border) !important;
+  background: #fafafa;
+  padding: 6px 14px !important;
+  flex-shrink: 0;
+}
+.ql-toolbar .ql-formats { margin-right: 10px !important; }
+.ql-toolbar button:hover,
+.ql-toolbar button.ql-active { color: var(--ms-blue) !important; }
+.ql-toolbar .ql-stroke { stroke: #605e5c !important; }
+.ql-toolbar button:hover .ql-stroke,
+.ql-toolbar button.ql-active .ql-stroke { stroke: var(--ms-blue) !important; }
+
+/* ── Utility: email body HTML rendering ──────────────────────────────────── */
+.email-html-body {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--ms-text-primary);
+  word-break: break-word;
+}
+.email-html-body p  { margin-bottom: 6px; }
+.email-html-body h1 { font-size: 1.5em; font-weight: 700; margin-bottom: 8px; }
+.email-html-body h2 { font-size: 1.25em; font-weight: 600; margin-bottom: 8px; }
+.email-html-body a  { color: var(--ms-blue); }
+.email-html-body ul,
+.email-html-body ol { padding-left: 20px; margin-bottom: 8px; }
+.email-html-body blockquote {
+  border-left: 3px solid #c8c6c4;
+  padding-left: 12px;
+  color: var(--ms-text-secondary);
+  margin: 8px 0;
+}
+
+/* ── Focus ring ──────────────────────────────────────────────────────────── */
+:focus-visible { outline: 2px solid var(--ms-blue); outline-offset: 2px; }
+
+/* ── Hover helpers (used by JS components) ───────────────────────────────── */
+.nav-item:hover            { background: rgba(255,255,255,0.08) !important; }
+.email-item:hover          { background: #f3f2f1 !important; }
+.folder-item:hover         { background: rgba(255,255,255,0.10) !important; }
+.folder-item:hover .folder-actions { opacity: 1 !important; }
+.att-card:hover            { background: #edebe9 !important; box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important; }
+.account-row:hover         { background: #f3f2f1; }
+.sugg-item:hover           { background: #f3f2f1; }
+
+/* ── Drag-and-drop visual feedback ──────────────────────────────────────── */
+[draggable="true"]:active  { opacity: 0.75; cursor: grabbing; }
+
+/* ── Print ───────────────────────────────────────────────────────────────── */
+@media print {
+  aside, .toolbar, .compose-btn, .filter-panel { display: none !important; }
+  .email-html-body { font-size: 13px; }
+}
+
+/* ── Responsive: narrow viewport ────────────────────────────────────────── */
+@media (max-width: 768px) {
+  /* Collapse sidebar on mobile */
+  aside[style] { display: none !important; }
+  /* Make email list full width */
+  div[style*="width:320px"] { width: 100% !important; border-right: none !important; }
+}
