@@ -15,7 +15,7 @@ export const SocketProvider = ({ children }) => {
 
   useEffect(() => {
     if (!user) { socketRef.current?.disconnect(); socketRef.current = null; return; }
-    const socket = io('http://localhost:5000', { transports: ['websocket'] });
+    const socket = io('https://mailflow-server-yrhv.onrender.com', { transports: ['websocket'] });
     socketRef.current = socket;
     socket.on('connect', () => socket.emit('register', user.id));
 
