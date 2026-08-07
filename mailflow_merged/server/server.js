@@ -21,6 +21,7 @@ const AVATARS_DIR = path.join(UPLOADS_DIR, 'avatars');
 [UPLOADS_DIR, AVATARS_DIR].forEach(d => { if (!fs.existsSync(d)) fs.mkdirSync(d, { recursive: true }); });
 
 const app    = express();
+app.set('trust proxy', 1);
 const server = http.createServer(app);
 
 // ── Socket.IO ─────────────────────────────────────────────────────────────────
